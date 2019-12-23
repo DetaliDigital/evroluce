@@ -5,6 +5,7 @@ return array(
         'ms2vf_show_vendor' => 1,
         'ms2vf_show_collection' => 1,
         'ms2vf_free_shipping' => 0,
+        'ms2vf_show_want_cheaper' => 0
     ),
     'fieldMeta' => array(
         'ms2vf_introtext' => array(
@@ -29,6 +30,13 @@ return array(
         ),
 
         'ms2vf_free_shipping' => array(
+          'dbtype' => 'tinyint',
+          'precision' => '1',
+          'attributes' => 'unsigned',
+          'phptype' => 'boolean',
+          'default' => 0,
+        ),
+        'ms2vf_show_want_cheaper' => array(
           'dbtype' => 'tinyint',
           'precision' => '1',
           'attributes' => 'unsigned',
