@@ -189,7 +189,8 @@ class customOrderInterface extends msOrderHandler {
         ) {
             $cost = $delivery->getCost($this, $cost);
             $deliveryCost = $delivery->getCost($this, 0);//Добавил переменную где получаем price доставки
-        }
+						$deliveryIndividualCost = $delivery->get('dev_manager_cost');
+				}
         /** @var msPayment $payment */
         if (!empty($this->order['payment']) && $payment = $this->modx->getObject('msPayment',
                 $this->order['payment'])
@@ -209,7 +210,7 @@ class customOrderInterface extends msOrderHandler {
         $cost = $response['data']['cost'];
         return $only_cost
             ? $cost
-            : $this->success('', array('cost' => $cost, 'delivery_cost'=>$deliveryCost));
+            : $this->success('', array('cost' => $cost, 'delivery_cost'=>$deliveryCost, 'deliveryIndividualCost' => $deliveryIndividualCost));
     }
 
 }
