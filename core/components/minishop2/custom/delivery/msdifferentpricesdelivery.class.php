@@ -57,7 +57,7 @@ class msDifferentPricesDelivery extends msDeliveryHandler {
 
         	$select = array(
             'msProduct' => 'id',
-            'Vendor' => 'vendor.ms2vf_free_shipping',
+            'Vendor' => 'Vendor.ms2vf_free_shipping',
           );
 
         	$default = array(
