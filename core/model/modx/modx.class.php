@@ -15,7 +15,7 @@
  *
  * @package modx
  */
- 
+
 /* fix for PHP float bug: http://bugs.php.net/bug.php?id=53632 (php 4 <= 4.4.9 and php 5 <= 5.3.4) */
 if (strstr(str_replace('.','',serialize(array_merge($_GET, $_POST, $_COOKIE))), '22250738585072011')) {
     header('Status: 422 Unprocessable Entity');
@@ -1028,11 +1028,17 @@ class modX extends xPDO {
             if (!empty($url) && $this->getOption('xhtml_urls', $options, false)) {
                 $url= preg_replace("/&(?!amp;)/","&amp;", $url);
             }
-        } else {
-            $this->log(modX::LOG_LEVEL_ERROR, '`' . $id . '` is not a valid integer and may not be passed to makeUrl()');
-        }
-        return $url;
-    }
+          } else {
+          $this->log(modX::LOG_LEVEL_ERROR, '`' . $id . '` is not a valid integer and may not be passed to makeUrl()');
+          try {
+              throw new Exception('catch this...');
+          }
+          catch (Exception $e) {
+              $this->log(modX::LOG_LEVEL_ERROR, $e->getTraceAsString());
+          }
+      }
+      return $url;
+  }
 
     /**
      * Filter a string for use as a URL path segment.
